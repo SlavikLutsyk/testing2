@@ -1,16 +1,12 @@
-﻿Feature: Withdraw Money
+﻿Feature: Sort First Name
 
-  Scenario: Withdraw money from the account
+  Scenario: Sort customers by first name
     Given I am on the banking website
-    When I select "Login as User" option
-    And I select "Hermoine Granger" as a customer
-    And I click Login button
-    Then I should be on the bank's home page
-    When I click the Withdrawl button
-    And I enter the withdrawal amount as full sum / 2
-    And I click the "Confirm Withdrawal" button
-    Then I should see a success message
-    When I enter the withdrawal amount as full sum x 2
-    And I click the "Confirm Withdrawal" button again
-    Then I should see an error message
+    When I select "Login as Bank Manager" option
+    Then I click "Customers" to see a list of customers
+    When I click the "First Name"
+    Then I should see the sorted list by DESC
+    When I click the "First Name"
+    Then I should see the sorted list by ASC
+    #Then I should see an error message
     Then I should close Chrome

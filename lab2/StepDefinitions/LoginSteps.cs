@@ -26,75 +26,35 @@ namespace YourProjectNamespace
             loginPage.OpenLoginPage("https://www.globalsqa.com/angularJs-protractor/BankingProject"); // Замініть URL на реальний URL вашого веб-сайту
         }
 
-        [When(@"I select ""Login as User"" option")]
-        public void WhenISelectLoginAsUserOption()
+        [When(@"I select ""Login as Bank Manager"" option")]
+        public void WhenISelectLoginAsBankManagerOption()
         {
-            loginPage.ClickLoginAsUser();
+            loginPage.ClickLoginAsBankManager();
         }
 
-        [When(@"I select ""Hermoine Granger"" as a customer")]
-
-        public void WhenISelectHarryPotter() {
-            loginPage.SelectCustomer("Hermoine Granger");
+        [Then(@"I click ""Customers"" to see a list of customers")]
+        public void ClickCustomers() {
+            loginPage.ClickCustomers();
         }
 
-        [When(@"I click Login button")]
-
-        public void WhenIClickLoginButton()
+        [When(@"I click the ""First Name""")]
+        public void ClickFirstName()
         {
-            loginPage.ClickLogin();
+            loginPage.ClickFirstName();
         }
 
-        [Then(@"I should be on the bank's home page")]
-        public void ThenIShouldSeeTheMainDivBlock()
+        [Then(@"I should see the sorted list by DESC")]
+        public void SortByDESC()
         {
-            bool isMainDivVisible = loginPage.IsWelcomeTextVisible();
-            Assert.IsTrue(isMainDivVisible, "The 'mainBox' block is not visible.");
+            bool res = loginPage.SortCustomersReverse(true);
+            Assert.IsTrue(res, "The sorting by desc doesn't work.");
         }
 
-        [When(@"I click the Withdrawl button")]
-
-        public void WhenIClickWithdraw()
+        [Then(@"I should see the sorted list by ASC")]
+        public void SortByASC()
         {
-            loginPage.OpenWithdrawMenu();
-        }
-
-        [When(@"I enter the withdrawal amount as full sum / 2")]
-        public void EnterAmount()
-        {
-            loginPage.EnterAmount();
-        }
-
-        [When(@"I click the ""Confirm Withdrawal"" button")]
-        public void ConfirmWithdraw()
-        {
-            loginPage.ClickWithdraw();
-        }
-
-        [Then(@"I should see a success message")]
-        public void ThenIShouldSeeASucseedMessage()
-        {
-            loginPage.IsSucseedTextVisible();
-        }
-
-        [When(@"I enter the withdrawal amount as full sum x 2")]
-
-        public void EnterMoreAmount()
-        {
-            loginPage.EnterMoreAmount();
-        }
-
-        [When(@"I click the ""Confirm Withdrawal"" button again")]
-
-        public void ClickWithdrawAgain()
-        {
-            loginPage.ClickWithdraw();
-        }
-
-        [Then(@"I should see an error message")]
-        public void ThenIShoulSeeAnError()
-        {
-            loginPage.IsErrorTextVisible();
+            bool res = loginPage.SortCustomersReverse(false);
+            Assert.IsTrue(res, "The sorting by asc doesn't work.");
         }
 
         [Then(@"I should close Chrome")]
